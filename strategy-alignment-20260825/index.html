@@ -1840,7 +1840,7 @@
   </main>
   </div>
   <div class="view-tools" aria-label="表示切り替え">
-    <button id="summary-toggle" type="button" aria-pressed="true">要旨表示</button>
+    <button id="summary-toggle" type="button" aria-pressed="true">詳細を表示</button>
     <a href="desktop-view.html">スマホでPC表示</a>
   </div>
   <script>
@@ -1859,7 +1859,7 @@
         const note=document.createElement('p');note.className='summary-note';note.textContent='補足・根拠は「詳細表示」で確認できます。';section.appendChild(note);
       }
     });
-    const setMode=summary=>{body.classList.toggle('summary-mode',summary);toggle.setAttribute('aria-pressed',String(summary));toggle.textContent=summary?'要旨表示':'詳細表示';localStorage.setItem('immune-view',summary?'summary':'detail');};
+    const setMode=summary=>{body.classList.toggle('summary-mode',summary);toggle.setAttribute('aria-pressed',String(summary));toggle.textContent=summary?'詳細を表示':'要旨に戻す';toggle.setAttribute('aria-label',summary?'補足・根拠を含む詳細を表示':'要旨表示へ戻す');localStorage.setItem('immune-view',summary?'summary':'detail');};
     setMode(localStorage.getItem('immune-view')!=='detail');
     toggle.addEventListener('click',()=>setMode(!body.classList.contains('summary-mode')));
 

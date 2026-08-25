@@ -49,6 +49,7 @@
     .major-agenda{margin:-32px -32px 24px;padding:15px 24px}.agenda-overview,.route{display:none}.statement{font-size:20px;padding:22px 24px}.callout{font-size:16px}.eyebrow{letter-spacing:0}.owner{color:var(--muted)}
     .minutes-head,.minutes-grid{grid-template-columns:1fr;gap:10px}.minutes-decision,.minutes-meta,.minutes-card{padding:18px 22px}.minutes-decision strong{font-size:21px}.minutes-card{display:grid;grid-template-columns:220px minmax(0,1fr);gap:18px;align-items:start;border-top:0!important;border-left:5px solid var(--navy)}.minutes-card.decision-card{border-left-color:var(--red)}.minutes-card.issue-card{border-left-color:#7a828e}.minutes-card.action-card{border-left-color:var(--navy)}.minutes-card h3{margin:0}.minutes-card ul{columns:1}.minutes-card li:first-child{margin-top:0}@media(max-width:800px){.minutes-card{grid-template-columns:1fr;gap:8px}}
     .nav a.is-active{color:#fff;background:var(--navy);border-left:4px solid var(--red);padding-left:7px}.view-tools{position:fixed;right:18px;bottom:18px;z-index:20;display:flex;gap:7px;padding:7px;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 7px 24px rgba(23,34,59,.15)}.view-tools button,.view-tools a{border:0;background:#f0f2f5;color:var(--navy);padding:9px 12px;font:inherit;font-size:12px;font-weight:800;text-decoration:none;cursor:pointer}.view-tools button[aria-pressed="true"]{background:var(--red);color:#fff}.detail-only{transition:opacity .2s}.summary-mode .detail-only{display:none!important}.summary-mode section{padding-top:27px;padding-bottom:27px}.summary-mode section[data-source]:after{margin-top:18px}.summary-note{display:none;margin:12px 0 0;color:var(--muted);font-size:11px}.summary-mode .summary-note{display:block}@media(max-width:800px){.view-tools{right:8px;bottom:8px}.view-tools a{display:none}}
+    .detail-mode .detail-only{background-color:#fffdf3;box-shadow:inset 4px 0 #e8b400;transition:background-color .8s,box-shadow .8s}.detail-mode .detail-only.detail-revealed{animation:detailReveal 2.4s ease-out 1}@keyframes detailReveal{0%{background-color:#fff1a8;box-shadow:inset 7px 0 var(--red),0 0 0 4px rgba(232,180,0,.18)}55%{background-color:#fff8d8;box-shadow:inset 5px 0 #e8b400,0 0 0 2px rgba(232,180,0,.08)}100%{background-color:#fffdf3;box-shadow:inset 4px 0 #e8b400,0 0 0 0 transparent}}
   </style>
 </head>
 
@@ -1859,9 +1860,9 @@
         const note=document.createElement('p');note.className='summary-note';note.textContent='補足・根拠は「詳細表示」で確認できます。';section.appendChild(note);
       }
     });
-    const setMode=summary=>{body.classList.toggle('summary-mode',summary);toggle.setAttribute('aria-pressed',String(summary));toggle.textContent=summary?'詳細を表示':'要旨に戻す';toggle.setAttribute('aria-label',summary?'補足・根拠を含む詳細を表示':'要旨表示へ戻す');localStorage.setItem('immune-view',summary?'summary':'detail');};
+    const setMode=(summary,animate=false)=>{body.classList.toggle('summary-mode',summary);body.classList.toggle('detail-mode',!summary);toggle.setAttribute('aria-pressed',String(summary));toggle.textContent=summary?'詳細を表示':'要旨に戻す';toggle.setAttribute('aria-label',summary?'補足・根拠を含む詳細を表示':'要旨表示へ戻す');document.querySelectorAll('.detail-only').forEach(el=>{el.classList.remove('detail-revealed');if(!summary&&animate)requestAnimationFrame(()=>el.classList.add('detail-revealed'));});localStorage.setItem('immune-view',summary?'summary':'detail');};
     setMode(localStorage.getItem('immune-view')!=='detail');
-    toggle.addEventListener('click',()=>setMode(!body.classList.contains('summary-mode')));
+    toggle.addEventListener('click',()=>setMode(!body.classList.contains('summary-mode'),true));
 
     const links=[...document.querySelectorAll('.nav a[href^="#"]')];
     const sections=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);

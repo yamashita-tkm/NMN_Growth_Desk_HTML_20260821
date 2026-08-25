@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1905" height="1347" viewBox="0 0 1905 1347" role="img" aria-labelledby="title desc">
+  <title id="title">顧客企画書のマスキング画像</title>
+  <desc id="desc">社外共有用として顧客企画書の本文、数値、条件を非表示にした代替画像</desc>
+  <rect width="1905" height="1347" fill="#f4f5f7"/>
+  <rect x="96" y="92" width="1713" height="1163" rx="28" fill="#ffffff" stroke="#d5d9e2" stroke-width="4"/>
+  <rect x="96" y="92" width="1713" height="22" rx="11" fill="#e60012"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic', sans-serif" text-anchor="middle">
+    <text x="952.5" y="455" font-size="54" font-weight="700" fill="#20242c">顧客共有企画書</text>
+    <text x="952.5" y="545" font-size="38" font-weight="700" fill="#e60012">社外共有用マスキング済み</text>
+    <rect x="420" y="635" width="1065" height="92" rx="12" fill="#343a46"/>
+    <rect x="420" y="755" width="1065" height="92" rx="12" fill="#697180"/>
+    <rect x="420" y="875" width="1065" height="92" rx="12" fill="#9aa1ad"/>
+    <text x="952.5" y="1060" font-size="30" fill="#555d69">本文・数値・取引条件は公開版から除外しています</text>
+    <text x="952.5" y="1115" font-size="26" fill="#7a828e">原本はローカル環境のみで管理</text>
+  </g>
+</svg>
